@@ -2,6 +2,7 @@ package com.djylrz.xzpt.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.djylrz.xzpt.R;
+import com.djylrz.xzpt.bean.PostResult;
+import com.djylrz.xzpt.bean.User;
 import com.djylrz.xzpt.utils.PostParameterName;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import okhttp3.*;
 import org.json.JSONException;
@@ -81,17 +85,16 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
 
         @Override
         protected String doInBackground(String... strings) {
-            //声明传递的JSON串
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty(PostParameterName.REQUEST_EMAIL, id.getText().toString());
-            jsonObject.addProperty(PostParameterName.REQUEST_PASSWORD, password.getText().toString());
+            User user = new User();
+            user.setEmail(id.getText().toString());
+            user.setPasswd(password.getText().toString());
 
-            Log.d(TAG, "onClick: "+jsonObject.toString());
+            Log.d(TAG, "doInBackground: GSON string is "+new Gson().toJson(user));
 
             //创建一个OkHttpClient对象
             OkHttpClient okHttpClient = new OkHttpClient();
             //创建一个RequestBody(参数1：数据类型 参数2传递的jso串)nnnn
-            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(user));
             //创建一个请求对象
             Request request = new Request.Builder()
                     .url(PostParameterName.POST_URL_LOGIN)
@@ -103,7 +106,10 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
                 //判断请求是否成功
                 if(response.isSuccessful()){
                     responseData = response.body().string();//该函数仅能有效调用一次！
-                    Log.d(TAG,responseData);
+                    Log.d(TAG,"doInBackground: the response data is "+responseData);
+                }else{
+                    Log.d(TAG, "doInBackground: POST FAILD");
+                    responseData="登录请求失败！";
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -115,11 +121,19 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
         @Override
         protected void onPostExecute(String responseData) {
             super.onPostExecute(responseData);
-            JSONObject responseJSON;
-            try {
-                responseJSON = new JSONObject(responseData);
-                switch (responseJSON.getString(PostParameterName.RESPOND_RESULTCODE)){
+            PostResult result = new Gson().fromJson(responseData, PostResult.class);
+
+            if (result != null){
+                switch (result.getResultCode()){
                     case "200":{
+                        //获取学生用户token，并保存到SharedPreferences
+                        User user = new User();
+                        user.setToken(result.getResultObject());
+                        SharedPreferences companyToken = getSharedPreferences("token", 0);
+                        SharedPreferences.Editor editor = companyToken.edit();
+                        editor.putString(PostParameterName.TOKEN,user.getToken());
+                        editor.commit();
+                        //跳转到用户主界面
                         Intent intent = new Intent(StudentLogin.this,MainActivity.class);
                         Log.d(TAG, "postLogin: 学生用户登录成功！");
                         startActivity(intent);
@@ -130,12 +144,13 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
                     }break;
                     default:{
                         //未知错误
-                        Toast.makeText(StudentLogin.this,"登录失败，错误码："+responseJSON.getString(PostParameterName.RESPOND_RESULTCODE),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(StudentLogin.this,"登录失败，错误码："+result.getResultCode(),Toast.LENGTH_SHORT).show();
                     }
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }else{
+                Log.d(TAG, "onPostExecute: response is empty");
             }
+
         }
     }
 }
