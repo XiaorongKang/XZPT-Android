@@ -27,7 +27,8 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
     private String CompanyDerection;
     private String Salary;
 
-    private User currentUser;//保存用户信息
+    private User currentUser;//当前用户信息
+    private User updateUser;//把要更新的信息放到这个用户中，用于序列成json和后端交互
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

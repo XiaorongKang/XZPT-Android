@@ -1,23 +1,39 @@
 package com.djylrz.xzpt.bean;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Recruitment implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    private java.sql.Timestamp publishTime;
-    private String companyId;
-    private String description;
+    private static final long serialVersionUID = 1;
+
     private long recruitmentId;
+    private java.sql.Timestamp publishTime;
+    private long validate;
+    private String companyId;
+    private String jobName;
+    private String description;
     private String contact;
-    private String qualifications;
     private String location;
     private String deliveryRequest;
-    private String duty;
     private String salary;
-    private long type;
-    private long validate;
+    private String degree;
+    private long workTime;
+    private long industryLabel;
+    private String stationLabel;
+    private long jobType;
+
+
+    public long getRecruitmentId() {
+        return recruitmentId;
+    }
+
+    public void setRecruitmentId(long recruitmentId) {
+        this.recruitmentId = recruitmentId;
+    }
 
 
     public java.sql.Timestamp getPublishTime() {
@@ -26,6 +42,15 @@ public class Recruitment implements Serializable {
 
     public void setPublishTime(java.sql.Timestamp publishTime) {
         this.publishTime = publishTime;
+    }
+
+
+    public long getValidate() {
+        return validate;
+    }
+
+    public void setValidate(long validate) {
+        this.validate = validate;
     }
 
 
@@ -38,6 +63,15 @@ public class Recruitment implements Serializable {
     }
 
 
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+
     public String getDescription() {
         return description;
     }
@@ -47,30 +81,12 @@ public class Recruitment implements Serializable {
     }
 
 
-    public long getRecruitmentId() {
-        return recruitmentId;
-    }
-
-    public void setRecruitmentId(long recruitmentId) {
-        this.recruitmentId = recruitmentId;
-    }
-
-
     public String getContact() {
         return contact;
     }
 
     public void setContact(String contact) {
         this.contact = contact;
-    }
-
-
-    public String getQualifications() {
-        return qualifications;
-    }
-
-    public void setQualifications(String qualifications) {
-        this.qualifications = qualifications;
     }
 
 
@@ -92,15 +108,6 @@ public class Recruitment implements Serializable {
     }
 
 
-    public String getDuty() {
-        return duty;
-    }
-
-    public void setDuty(String duty) {
-        this.duty = duty;
-    }
-
-
     public String getSalary() {
         return salary;
     }
@@ -110,21 +117,48 @@ public class Recruitment implements Serializable {
     }
 
 
-    public long getType() {
-        return type;
+    public String getDegree() {
+        return degree;
     }
 
-    public void setType(long type) {
-        this.type = type;
+    public void setDegree(String degree) {
+        this.degree = degree;
     }
 
 
-    public long getValidate() {
-        return validate;
+    public long getWorkTime() {
+        return workTime;
     }
 
-    public void setValidate(long validate) {
-        this.validate = validate;
+    public void setWorkTime(long workTime) {
+        this.workTime = workTime;
+    }
+
+
+    public long getIndustryLabel() {
+        return industryLabel;
+    }
+
+    public void setIndustryLabel(long industryLabel) {
+        this.industryLabel = industryLabel;
+    }
+
+
+    public String getStationLabel() {
+        return stationLabel;
+    }
+
+    public void setStationLabel(String stationLabel) {
+        this.stationLabel = stationLabel;
+    }
+
+
+    public long getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(long jobType) {
+        this.jobType = jobType;
     }
 
 }

@@ -1,11 +1,13 @@
 package com.djylrz.xzpt.bean;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Company implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1;
 
   private String companyId;
   private String telephone;
@@ -15,6 +17,7 @@ public class Company implements Serializable {
   private String email;
   private String description;
   private long status;
+  private String token;
 
 
   public String getCompanyId() {
@@ -86,6 +89,15 @@ public class Company implements Serializable {
 
   public void setStatus(long status) {
     this.status = status;
+  }
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
 }

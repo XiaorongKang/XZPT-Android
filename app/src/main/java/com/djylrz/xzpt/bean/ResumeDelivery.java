@@ -1,16 +1,20 @@
 package com.djylrz.xzpt.bean;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class ResumeDelivery implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
+
     private long resumeDeliveryId;
     private long recruitmentId;
     private String userId;
     private long resumeId;
     private long deliveryStatus;
+    private String remark;
 
 
     public long getResumeDeliveryId() {
@@ -55,6 +59,15 @@ public class ResumeDelivery implements Serializable {
 
     public void setDeliveryStatus(long deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

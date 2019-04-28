@@ -55,6 +55,7 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
                 new LoginAsyncTask().execute();
                 break;
             case R.id.student_forget_password_button:
+                //todo:跳转到忘记密码页面——to欧文
 //                Intent forgetPassword = new Intent();//跳到忘记密码
 //                startActivity(forgetPassword);
                 Toast.makeText(StudentLogin.this,"忘记密码",Toast.LENGTH_SHORT).show();
@@ -119,8 +120,6 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
                 responseJSON = new JSONObject(responseData);
                 switch (responseJSON.getString(PostParameterName.RESPOND_RESULTCODE)){
                     case "200":{
-                        //TODO：已经验证学生用户名密码正确，请在下面实现学生登录成功后的界面跳转——to欧文
-                        //Done
                         Intent intent = new Intent(StudentLogin.this,MainActivity.class);
                         Log.d(TAG, "postLogin: 学生用户登录成功！");
                         startActivity(intent);

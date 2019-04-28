@@ -1,11 +1,16 @@
 package com.djylrz.xzpt.bean;
 
 
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class Resume implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
+
     private long resumeId;
     private String userId;
     private String telephone;
@@ -13,15 +18,16 @@ public class Resume implements Serializable {
     private String headUrl;
     private String email;
     private long sex;
-    private long highestEducation;
-    private String occupation;
     private String presentCity;
     private String expectedCity;
-    private String degree;
+    private String school;
+    private String speciality;
+    private java.sql.Date startTime;
+    private java.sql.Date endTime;
+    private long highestEducation;
     private String certificate;
     private String projectExperience;
     private String practicalExperience;
-    private String selfEvaluation;
     private long resumeStatus;
 
 
@@ -88,24 +94,6 @@ public class Resume implements Serializable {
     }
 
 
-    public long getHighestEducation() {
-        return highestEducation;
-    }
-
-    public void setHighestEducation(long highestEducation) {
-        this.highestEducation = highestEducation;
-    }
-
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-
     public String getPresentCity() {
         return presentCity;
     }
@@ -124,12 +112,48 @@ public class Resume implements Serializable {
     }
 
 
-    public String getDegree() {
-        return degree;
+    public String getSchool() {
+        return school;
     }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+
+    public java.sql.Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(java.sql.Date startTime) {
+        this.startTime = startTime;
+    }
+
+
+    public java.sql.Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(java.sql.Date endTime) {
+        this.endTime = endTime;
+    }
+
+
+    public long getHighestEducation() {
+        return highestEducation;
+    }
+
+    public void setHighestEducation(long highestEducation) {
+        this.highestEducation = highestEducation;
     }
 
 
@@ -157,15 +181,6 @@ public class Resume implements Serializable {
 
     public void setPracticalExperience(String practicalExperience) {
         this.practicalExperience = practicalExperience;
-    }
-
-
-    public String getSelfEvaluation() {
-        return selfEvaluation;
-    }
-
-    public void setSelfEvaluation(String selfEvaluation) {
-        this.selfEvaluation = selfEvaluation;
     }
 
 

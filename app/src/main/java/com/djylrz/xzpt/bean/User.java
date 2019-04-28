@@ -1,37 +1,33 @@
 package com.djylrz.xzpt.bean;
 
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.Serializable;
 
-/**
- * @author Murphy
- * @date 2019/4/19 13:21
- */
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1;
     private String userId;
-    private String passwd;
     private String telephone;
+    private String passwd;
     private String userName;
     private String headUrl;
     private String email;
     private long sex;
     private String school;
     private String specialty;
-    private String occupation;
+    private java.sql.Date startTime;
+    private java.sql.Date endTime;
+    private long workTime;
+    private long jobType;
     private String presentCity;
     private String expectedCity;
-
-    /* token 临时存这里吧 //TODO 注意以后把这个从实体类中删除, 注意安卓端没有这个属性，安卓端直接删除即可*/
+    private long industryLabel;
+    private String stationLabel;
+    private String expectSalary;
     private String token;
-
-    private long workTime;
-    private long jobClassification;
-    private long jobNature;
 
 
     public String getUserId() {
@@ -43,21 +39,21 @@ public class User implements Serializable {
     }
 
 
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
-
     public String getTelephone() {
         return telephone;
     }
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
 
@@ -115,12 +111,39 @@ public class User implements Serializable {
     }
 
 
-    public String getOccupation() {
-        return occupation;
+    public java.sql.Date getStartTime() {
+        return startTime;
     }
 
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
+    public void setStartTime(java.sql.Date startTime) {
+        this.startTime = startTime;
+    }
+
+
+    public java.sql.Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(java.sql.Date endTime) {
+        this.endTime = endTime;
+    }
+
+
+    public long getWorkTime() {
+        return workTime;
+    }
+
+    public void setWorkTime(long workTime) {
+        this.workTime = workTime;
+    }
+
+
+    public long getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(long jobType) {
+        this.jobType = jobType;
     }
 
 
@@ -142,39 +165,39 @@ public class User implements Serializable {
     }
 
 
+    public long getIndustryLabel() {
+        return industryLabel;
+    }
+
+    public void setIndustryLabel(long industryLabel) {
+        this.industryLabel = industryLabel;
+    }
+
+
+    public String getStationLabel() {
+        return stationLabel;
+    }
+
+    public void setStationLabel(String stationLabel) {
+        this.stationLabel = stationLabel;
+    }
+
+
+    public String getExpectSalary() {
+        return expectSalary;
+    }
+
+    public void setExpectSalary(String expectSalary) {
+        this.expectSalary = expectSalary;
+    }
+
+
     public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-
-    public long getWorkTime() {
-        return workTime;
-    }
-
-    public void setWorkTime(long workTime) {
-        this.workTime = workTime;
-    }
-
-
-    public long getJobClassification() {
-        return jobClassification;
-    }
-
-    public void setJobClassification(long jobClassification) {
-        this.jobClassification = jobClassification;
-    }
-
-
-    public long getJobNature() {
-        return jobNature;
-    }
-
-    public void setJobNature(long jobNature) {
-        this.jobNature = jobNature;
     }
 
 }
