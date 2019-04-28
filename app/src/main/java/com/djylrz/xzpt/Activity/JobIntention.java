@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.djylrz.xzpt.R;
+import com.djylrz.xzpt.bean.User;
 
 public class JobIntention extends BaseActivity implements View.OnClickListener{
 
@@ -15,6 +16,7 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
     private EditText companyDerection;
     private EditText salary;
     private TextView checkindate;
+    private Button checkinDateButton;
 
     private String  checkInYear;//记录入职的出生年
     private String checkInMonth;//月
@@ -25,6 +27,7 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
     private String CompanyDerection;
     private String Salary;
 
+    private User currentUser;//保存用户信息
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +53,9 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
 
         salary = (EditText)findViewById(R.id.info_salary);
         Salary = salary.getText().toString();//薪资
+
+        checkinDateButton = (Button) findViewById(R.id.checkin_date_button);
+        checkinDateButton.setOnClickListener(this);
     }
 
     @Override
@@ -75,13 +81,13 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
             case R.id.info_complete_button:
                 //下一步按钮
                 //todo：把当前获取的个人信息和上个界面的信息收集，完成个人信息填写——to小榕
+                //发起更改求职意向的请求
 
                 break;
             default:
                 break;
         }
     }
-
 }
 
 

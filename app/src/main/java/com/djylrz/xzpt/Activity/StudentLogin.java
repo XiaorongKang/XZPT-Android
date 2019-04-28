@@ -123,6 +123,7 @@ public class StudentLogin extends BaseActivity implements View.OnClickListener {
                         //Done
                         Intent intent = new Intent(StudentLogin.this,MainActivity.class);
                         Log.d(TAG, "postLogin: 学生用户登录成功！");
+                        startActivity(intent);
                     }break;
                     case "2008":{
                         //用户名密码有误
