@@ -111,10 +111,10 @@ public class SimpleCardFragment extends Fragment {
     }
 
     private void initRecruitments(){
-        for(int i = 0; i< 20 ; ++i){
+        /*for(int i = 0; i< 20 ; ++i){
             Recruitment test1 = new Recruitment(i,java.sql.Timestamp.valueOf("2019-01-01 15:54:21.0"),1,"福州大学",
                     "大二辅导员","xxxxxxx","15659769111","福州","中文简历","100K-120K","博士以上",996,1,"开发",1);
             recruitmentList.add(test1);
-        }
+        }*/
     }
 }

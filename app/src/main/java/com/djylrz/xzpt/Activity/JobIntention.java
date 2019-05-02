@@ -105,7 +105,6 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.info_next_button:
-                //todo 保存填入的数据 ->小榕
                 VolleyNetUtil.getInstance().setRequestQueue(getApplicationContext());//获取requestQueue
 
                 //保存参数
@@ -176,7 +175,6 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        //todo:获取信息显示在编辑框上
                                         initpage(user);//初始化页面信息
                                     }
                                 });
@@ -210,7 +208,8 @@ public class JobIntention extends BaseActivity implements View.OnClickListener{
             Pattern r = Pattern.compile(pattern);
             // 现在创建 matcher 对象
             Matcher matcher = r.matcher(user.getExpectSalary());
-
+            Log.d(TAG, "initpage: "+user.getExpectSalary());
+            //todo 正则表达式错误
             basicSalary.setText(matcher.group(1));
             topSalary.setText(matcher.group(3));
         }
